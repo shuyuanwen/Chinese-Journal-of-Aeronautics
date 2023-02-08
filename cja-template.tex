@@ -1,0 +1,323 @@
+% !TeX encoding = UTF-8
+% !TeX program = pdflatex
+% !TeX spellcheck = en_US
+
+% Template article for Chinese Journal of Aeronautics
+
+\documentclass{cja}
+
+% Use the option doubleblind to hide author name, affiliation, email address etc.
+% when submitting the manuscript for double blind refereeing purpose.
+% \documentclass[doubleblind]{cja}
+
+\usepackage{bm}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
+%% \usepackage{lineno}
+
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\begin{document}
+
+%% Title, authors and addresses
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \address for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \affiliation{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+%% \fntext[label3]{}
+
+\title{Generation of dynamic grids and computation of unsteady transonic flows around assemblies}
+
+% For use in header
+% \shorttitle{Generation \dots}
+
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{}
+%% \affiliation[label1]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+%%
+%% \affiliation[label2]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+
+% Author affiliations should be listed according to the name order under the paper title.
+% Chinese authors should put the family name first.
+% The corresponding author should be marked with ``*'' on the top right.
+
+\author[a]{Zhiliang LU\corref{cor}}
+\ead{abc@buaa.edu.cn}
+
+\author[b]{John SMITH}
+
+% For use in header
+\shortauthors{Z. LU and J. SMITH}
+
+\cortext[cor]{Corresponding author}
+
+\affiliation[a]{
+  organization = {Department of Aerodynamics, Nanjing Aeronautical Institute},
+  city         = {Nanjing},
+  postcode     = {210016},
+  country      = {China},
+}
+
+\affiliation[b]{
+  organization = {bSchool of Electronic and Information Engineering, Duke University},
+  city         = {Durham NC},
+  postcode     = {27708},
+  country      = {USA},
+}
+
+\begin{abstract}
+  \begin{instructions}
+    (Abstract should be about 150--200 words which can conclude the whole content of the paper (including purpose, method, results and conclusion).
+    Equations, figures and tables, as well as ref-erences are not supposed to appear in this part.
+    When abbreviation is firstly used, it should contain the full name with its abbreviation included in parentheses, such as ``signal to noise ratio (SNR)''.
+    Do NOT use the first person as subject.
+    Do NOT repeat the title as the first sentence of the abstract.
+    Simple sentence and active voice are preferred, and verb should be close to the subject.)
+  \end{instructions}
+
+  Low service ability of an airfield area causes frequent air traffic congestion and flight delays at busy airports.
+  The airport system calls for capacity and efficiency improvements urgently to relieve the current congested situation.
+  In this work, an optimization approach for the collaborative operating modes of multi-runway systems is proposed to balance the demand and capacity.
+  Based on the theory of runway capacity envelope, a corresponding optimization model is established by introducing the capacity loss coefficient which objectively reflects the mode switching characteristics.
+  Then an elitist non-dominating sorting genetic algorithm is designed combined with the mul-ti-objective optimization theory, Compared with the single runway mode, the combined runway modes bring about a striking optimization effect which results in a 38.1\% reduction in the cost of flight delays and a 46.4\% decrease in the quantity of adjusted flights.
+  The approach provided can significantly enhance collaborative operating efficiency of a multi-runway system, and effectively improve air traffic punctuality.
+\end{abstract}
+
+\begin{keyword}
+  %% keywords here, in the form: keyword \sep keyword
+  Transonic flow \sep
+  Unsteady flow \sep
+  Full-potential equation \sep
+  Assembly \sep
+  flight delays
+
+  \begin{instructions}
+    (About 5--8 words separated with ``;''.
+    Use small letters except technical terms.
+    Abbreviations should contain full name with abbreviation included in parentheses.
+    Selection of 1--2 from EI controlled term list is preferred.)
+  \end{instructions}
+\end{keyword}
+
+% For editors
+% \frontheader{Chinese Journal of Aeronautics, (year), \textbf{volum}(number): page--page}
+% \articledoi{https://doi.org/10.1016/j.cja.2021.00.000}
+% \frontfooter{%
+%   1000-9361 © 2021 Chinese Society of Aeronautics and Astronautics.
+%   Production and hosting by Elsevier Ltd.\par
+%   This is an open access article under the CC BY-NC-ND license
+%   (\url{http://creativecommons.org/licenses/by-nc-nd/4.0/}).
+% }
+% \received{1 June 2021}
+% \revised{1 June 2021}
+% \accepted{1 June 2021}
+% \availableonline{1 June 2021}
+% \setcounter{page}{3138}
+
+\maketitle
+
+%% \linenumbers
+
+%% main text
+\section{Introduction}
+\label{sec:introduction}
+
+\begin{instructions}
+  (This template requires TeX Live 2017 or later version to compile.
+  \href{https://www.latexstudio.net/uploads/install-latex-guide-zh-cn.pdf}{\emph{A LaTeX Intallation Guide}} (in Chinese) is recommended for installing the laste version of TeX Live.
+  Note that the CTeX Distribution is NOT supported.
+
+    Please use the \texttt{doubleblind} class option to hide author name, affiliation, email address etc.\ for double blind refereeing purpose when submitting the manuscript.)
+\end{instructions}
+
+The computation method of unsteady transonic flow based on N-S equations should be best accurate, but to three-dimensional complex problems, it can be achieved only on large computers, and moreover, the results are not ideal sometimes\cite{van2000art}.
+A viscous/inviscid interaction method is an applicable one and the computation time can be reduced by two orders.
+
+\begin{instructions}
+  (Equations, figures and tables are usually not supposed to appear in this part.)
+\end{instructions}
+
+
+
+\section{Computation scheme}
+\label{sec:method}
+
+\subsection{Governing equation}
+
+\subsubsection{Principle}
+
+The unsteady full-potential equation written in a body fitted coordinate system is given by
+\begin{equation}
+  (\rho \bm{J})_\tau + (\rho U \bm{J})_\xi + (\rho V \bm{J})_\eta + (\rho W \bm{J})_\zeta = 0
+  \label{eq:1}
+\end{equation}
+where $\rho$ is density, $U$, $V$, and $W$ are the contravariant velocity components in the $\xi$, $\eta$, and $\zeta$ directions, $\tau$ means time, and $\bm{J}$ is Jacobian.
+\cref{eq:1} is solved by the time-accurate approximate factorization algorithm and internal Newton iterations\cite{strunk1979elements}; body conditions and wake conditions are implicit embedded.
+
+
+\subsection{Generation of grids}
+
+Taking the incompressible potential flow round a cylinder for example, the stream function is
+\begin{equation}
+  \psi = V_\infty \left( r - \frac{a^2}{r} \right) \sin \theta
+\end{equation}
+where $a$ is radius, and $v_\infty$ the velocity of free stream. Magnifying its radius to $a + \epsilon$.
+
+
+
+\section{Presentation of results}
+\label{sec:results}
+
+\subsection{Artwork/Figure}
+
+\begin{instructions}
+  A detailed guide on electronic artwork is available on our website:
+  \begin{quotation}
+    \url{http://www.elsevier.com/artworkinstructions}
+  \end{quotation}
+  You are urged to visit this site; some excerpts from the detailed information are given here.
+
+  \paragraph{Formats}
+  Regardless of the application used, when your electronic artwork is finalised, please ``save as'' or convert the images to one of the following formats
+  (note the resolution requirements for line drawings, halftones, and line/halftone combinations given below):
+  \begin{description}
+    \item[PDF] Vector drawings. Embed the font or save the text as ``graphics''.
+    \item[PNG] color or grayscale photographs (halftones): always use a minimum of 300 dpi.
+    \item[PNG] Bitmapped line drawings: use a minimum of 1000 dpi.
+    \item[PNG] Combinations bitmapped line/half-tone(color or grayscale): a minimum of 500 dpi is required.
+  \end{description}
+
+  If your electronic artwork is created in a Microsoft Office application (Word, PowerPoint, Excel) then please supply ``as is''.
+
+  Please do not:
+  \begin{itemize}
+    \item Supply files that are optimised for screen use(like GIF, BMP, PICT, WPG); the resolution is too low;
+    \item Supply files that are too low in resolution;
+    \item Submit graphics that are disproportionately large for the content.
+  \end{itemize}
+
+  \paragraph{Color artwork}
+  Please make sure that artwork files are in an acceptable format (PDF, PNG or MS Office files) and with the correct resolution.
+  If, together with your accepted article, you submit usable color figures then Elsevier will ensure, at no additional charge, that these figures will appear in color on the Web (e.g., ScienceDirect and other sites) regardless of whether or not these illustrations are reproduced in color in the printed version.
+\end{instructions}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.9\linewidth]{example-image.pdf}
+  \caption{Actual control input curves}
+\end{figure}
+
+\begin{table}
+  \centering
+  \caption{CPU time ratio of each term.}
+  \begin{tabularx}{\linewidth}{Xl}
+    \toprule
+    Computational term              & CPU time (\%) \\
+    \midrule
+    Flow field                      & 32.6          \\
+    Solid temperature field         & 2.2           \\
+    Species concentration field     & 4.3           \\
+    Radiation transfer/energy field & 60.9          \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+\begin{instructions}
+  (Conclusion should be summarized in points without tedious description of background, method, etc.)
+\end{instructions}
+
+(1) A rapid method of the generation of boundary-fitted dynamic grids is developed in this paper, and the method of Viscous/Inviscid Interaction is used to compute the unsteady aerodynamic forces on wing/missiles and wing/body with control surfaces.
+
+(2) The computation results are in agreement with experimental data.
+
+
+
+\section*{Acknowledgements}
+
+\begin{instructions}
+  (This journal uses double-blind review.
+  Please remove the contents of acknowledgements (funding) when submitting the manuscript.)
+\end{instructions}
+
+This study was co-supported by the Open Fund of Key Laboratory of Power Research of China (No. *****) and the National Natural Science Foundation of China (Nos. ****** and ******).
+
+
+
+\nocite{*}
+
+%% If you have bibdatabase file and want bibtex to generate the
+%% bibitems, please use
+
+\bibliographystyle{cja}
+\bibliography{cja-template}
+
+%% else use the following coding to input the bibitems directly in the
+%% TeX file.
+
+%% \begin{thebibliography}{00}
+%%
+%% \bibitem{label}
+%% Text of bibliographic item
+%%
+%% \end{thebibliography}
+
+
+
+%% The Appendices part is started with the command \appendix;
+%% appendix sections are then done as normal sections
+\appendix
+
+\section{Supplementary material}
+\label{sec:supp}
+
+\begin{instructions}
+  (Appendix is put behind biography unless otherwise specified.
+  If there are more than one, order them with capitalized letters.
+  If there are equations, order them with letters and numbers, such as ``(A1)'' and ``(A2)''.)
+\end{instructions}
+
+\begin{equation}
+  a + b = c
+\end{equation}
+
+
+\end{document}
